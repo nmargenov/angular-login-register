@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="login-container">
+    <h1>Login</h1>
+    <p *ngIf="errorMsg" class="errorMsg">{{errorMsg}}</p>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+      <input type="text" [class.is-invalid]="username.invalid && username.touched" #username="ngModel" [(ngModel)]="userModel.username"
+       name="username" placeholder="Username" required minlength="3" maxlength="20">
+       <div *ngIf="username.errors && (username.invalid && username.touched)">
+        <small class="errorMsg" *ngIf="username.errors?.['required']">*First Name is required!</small>
+        <small class="errorMsg" *ngIf="username.errors?.['minlength']">*First Name must be at least 3 characters!</small>
+        <small class="errorMsg" *ngIf="username.errors?.['maxlength']">*First Name must not exceed 20 characters!</small>
+      </div>
+      <input type="password" name="password" placeholder="Password" [class.is-invalid]="password.invalid && password.touched" #password="ngModel" [(ngModel)]="userModel.password"
+       required minlength="6">
+       <div *ngIf="password.errors && (password.invalid && password.touched)">
+        <small class="errorMsg" *ngIf="password.errors?.['required']">*Password is required!</small>
+        <small class="errorMsg" *ngIf="password.errors?.['minlength']">*Password must be at least 6 characters!</small>
+      </div>
+      <input [disabled]="userForm.invalid" type="submit" class="submit-button" value="Login"/>
+    </form>
+  </div>
