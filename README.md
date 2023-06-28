@@ -13,7 +13,7 @@
 - The front-end uses the jwt-decode package to decode the token. Then the front-end will implement the logic needed from there. It uses it only in the header component to get the user's username and display it when the user is logged-in.
 
 # interceptor
-- The auth interceptor will check if the request is sent a url which includes 'api',if so it will check if the token exists and will both cases are true it will set the 'x-authorization' in the headers to be the token and send the req with the token to the back-end. If one of the 2 cases is not true it will just send the request without modifying it.
+- The auth interceptor will check if the request is sent a url which includes 'api',if so it will check if the token exists and will both cases are true it will set the 'x-authorization' in the headers to be the token and send the req with the token to the back-end. If one of the 2 cases is not true it will just send the request without modifying it. The interceptor will catch if the server returns 409 'Invalid authorization token' and clear the localStorage, then navigate to the login page.
 
 # guards
 ## Back-end guards
