@@ -11,10 +11,11 @@ import { RegisterComponent } from './main/auth/register/register.component';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { mustBeLoggedIn } from './main/auth/guards/must-be-logged-in.guard';
 import { mustBeLoggedOut } from './main/auth/guards/must-be-logged-out.guard';
 import { ProtectedComponent } from './main/protected/protected.component';
+import { TokenInterceptorInterceptor } from './main/auth/interceptors/token-interceptor.interceptor';
 
 
 @NgModule({
@@ -35,7 +36,11 @@ import { ProtectedComponent } from './main/protected/protected.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [mustBeLoggedIn,mustBeLoggedOut],
+  providers: [mustBeLoggedIn,mustBeLoggedOut,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorInterceptor,
+    multi:true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

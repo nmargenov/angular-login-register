@@ -1,1 +1,3 @@
 <h1>This route is only for logged-in users!</h1>
+<h3 *ngIf="isLoading">Loading...</h3>
+<h3 *ngIf="!isLoading">You made a request to the server where we test your token! This is the response from the server: {{response}}</h3>

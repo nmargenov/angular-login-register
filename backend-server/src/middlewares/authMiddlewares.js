@@ -13,7 +13,8 @@ exports.auth = async (req, res, next) => {
             res.isLogged = true;
             res.locals.isLogged = true;
             res.locals.user = decodedToken;
-
+            
+            
             next();
         } catch (err) {
             res.status(409).send({ message: "Invalid authorization token!" });
