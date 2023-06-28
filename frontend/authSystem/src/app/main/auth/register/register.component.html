@@ -1,1 +1,70 @@
-<p>register works!</p>
+<div class="login-container">
+    <h1>Register</h1>
+    <p *ngIf="errorMsg" class="errorMsg">{{errorMsg}}</p>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <input type="text" [class.is-invalid]="username.invalid && username.touched" #username="ngModel"
+            [(ngModel)]="userModel.username" name="username" placeholder="Username" required minlength="3"
+            maxlength="20">
+        <div *ngIf="username.errors && (username.invalid && username.touched)">
+            <small class="errorMsg" *ngIf="username.errors?.['required']">*Username is required!</small>
+            <small class="errorMsg" *ngIf="username.errors?.['minlength']">*Username must be at least 3
+                characters!</small>
+            <small class="errorMsg" *ngIf="username.errors?.['maxlength']">*Username must not exceed 20
+                characters!</small>
+        </div>
+        <input (change)="validatePasswords()" type="password" name="password" placeholder="Password"
+            [class.is-invalid]="password.invalid && password.touched" #password="ngModel"
+            [(ngModel)]="userModel.password" required minlength="6">
+        <div *ngIf="password.errors && (password.invalid && password.touched)">
+            <small class="errorMsg" *ngIf="password.errors?.['required']">*Password is required!</small>
+            <small class="errorMsg" *ngIf="password.errors?.['minlength']">*Password must be at least 6
+                characters!</small>
+        </div>
+        <input (change)="validatePasswords()" type="password" name="rePassword" placeholder="Repeat Password"
+            [class.is-invalid]="rePassword.invalid && rePassword.touched" #rePassword="ngModel"
+            [(ngModel)]="userModel.rePassword" required minlength="6">
+        <div *ngIf="rePassword.errors && (rePassword.invalid && rePassword.touched)">
+            <small class="errorMsg" *ngIf="rePassword.errors?.['required']">*Repeat password is required!</small>
+            <small class="errorMsg" *ngIf="rePassword.errors?.['minlength']">*Repeat password must be at least 6
+                characters!</small>
+        </div>
+        <small class="errorMsg" *ngIf="rePassword.touched && !equalPasswords && !rePassword.errors">*Passwords must
+            match!</small>
+        <input type="email" name="email" placeholder="Email" [class.is-invalid]="email.invalid && email.touched"
+            #email="ngModel" ngModel email="true" [(ngModel)]="userModel.email" required>
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+            <small class="errorMsg" *ngIf="email.errors?.['required']">*Email is required!</small>
+            <small class="errorMsg" *ngIf="email.errors?.['email']">*Email is invalid!</small>
+        </div>
+        <input type="text" [class.is-invalid]="firstName.invalid && firstName.touched" #firstName="ngModel"
+            [(ngModel)]="userModel.firstName" name="firstName" placeholder="First Name" required minlength="3"
+            maxlength="20">
+        <div *ngIf="firstName.errors && (firstName.invalid && firstName.touched)">
+            <small class="errorMsg" *ngIf="firstName.errors?.['required']">*First Name is required!</small>
+            <small class="errorMsg" *ngIf="firstName.errors?.['minlength']">*First Name must be at least 3
+                characters!</small>
+            <small class="errorMsg" *ngIf="firstName.errors?.['maxlength']">*First Name must not exceed 20
+                characters!</small>
+        </div>
+        <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched" #lastName="ngModel"
+            [(ngModel)]="userModel.lastName" name="lastName" placeholder="Last Name" required minlength="3"
+            maxlength="20">
+        <div *ngIf="lastName.errors && (lastName.invalid && lastName.touched)">
+            <small class="errorMsg" *ngIf="lastName.errors?.['required']">*Last Name is required!</small>
+            <small class="errorMsg" *ngIf="lastName.errors?.['minlength']">*Last Name must be at least 3
+                characters!</small>
+            <small class="errorMsg" *ngIf="lastName.errors?.['maxlength']">*Last Name must not exceed 20
+                characters!</small>
+        </div>
+        <input type="number" [class.is-invalid]="age.invalid && age.touched" #age="ngModel" [(ngModel)]="userModel.age"
+            name="age" placeholder="Age" required min="1" max="100">
+        <div *ngIf="age.errors && (age.invalid && age.touched)">
+            <small class="errorMsg" *ngIf="age.errors?.['required']">*Last Name is required!</small>
+            <small class="errorMsg" *ngIf="age.errors?.['min']">*Age must be at least 1
+                characters!</small>
+            <small class="errorMsg" *ngIf="age.errors?.['max']">*Age must not exceed 100!</small>
+        </div>
+
+        <input [disabled]="userForm.invalid || !equalPasswords" type="submit" class="submit-button" value="Register" />
+    </form>
+</div>

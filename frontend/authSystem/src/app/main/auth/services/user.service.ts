@@ -31,6 +31,10 @@ export class UserService {
     return this.http.post<string>(this.url+'users/login',{username,password}).pipe(catchError(this.errorHandler));
   }
 
+  register(username:string,password:string,rePassword:string,email:string,age:number,firstName:string,lastName:string):Observable<string>{
+    return this.http.post<string>(this.url+'users/register',{username,password,rePassword,email,age,firstName,lastName}).pipe(catchError(this.errorHandler));
+  }
+
   logout(){
     localStorage.removeItem(TOKEN);
     return this.router.navigate(['/']);
