@@ -1,4 +1,5 @@
 const { login, register } = require('../managers/userManager');
+const { mustBeGuest } = require('../middlewares/authMiddlewares');
 
 const router = require('express').Router();
 
@@ -7,7 +8,7 @@ const paths = {
     register:'/register',
 }
 
-router.post(paths.login,async(req,res)=>{
+router.post(paths.login,mustBeGuest,async(req,res)=>{
     try{
         const username = req.body.username?.trim();
         const password = req.body.password?.trim();
@@ -19,7 +20,7 @@ router.post(paths.login,async(req,res)=>{
     }
 });
 
-router.post(paths.register,async(req,res)=>{
+router.post(paths.register,mustBeGuest,async(req,res)=>{
     try{
         const username = req.body.username?.trim();
         const lastName = req.body.lastName?.trim();
