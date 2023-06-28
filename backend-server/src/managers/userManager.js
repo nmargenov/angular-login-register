@@ -43,7 +43,8 @@ exports.register = async(username,firstName,lastName,password,rePassword,email,a
         username:newUser.username,
         firstName:newUser.firstName,
         lastName:newUser.lastName,
-        email:newUser.email
+        email:newUser.email,
+        age:newUser.age
     }; 
 
     const token = await sign(payload,SECRET,{expiresIn:'1h'});
@@ -69,7 +70,8 @@ exports.login = async(username,password) =>{
         username:user.username,
         firstName:user.firstName,
         lastName:user.lastName,
-        email:user.email
+        email:user.email,
+        age:user.age
     }; 
 
     const token = await sign(payload,SECRET,{expiresIn:'1h'});
