@@ -12,6 +12,8 @@ import { LogoutComponent } from './main/auth/logout/logout.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { mustBeLoggedIn } from './main/auth/guards/must-be-logged-in.guard';
+import { mustBeLoggedOut } from './main/auth/guards/must-be-logged-out.guard';
 
 
 @NgModule({
@@ -31,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [mustBeLoggedIn,mustBeLoggedOut],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
