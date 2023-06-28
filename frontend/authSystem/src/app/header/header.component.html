@@ -1,6 +1,7 @@
 <div class="navigation">
     <div class="left-buttons">
         <a routerLink="/" class="navigation-button">Home</a>
+        <a *ngIf="isLoggedIn" routerLink="/protected" class="navigation-button">Protected routed</a>
     </div>
     <div class="right-buttons">
         <ng-container *ngIf="isLoggedIn">

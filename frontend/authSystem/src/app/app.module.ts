@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { mustBeLoggedIn } from './main/auth/guards/must-be-logged-in.guard';
 import { mustBeLoggedOut } from './main/auth/guards/must-be-logged-out.guard';
+import { ProtectedComponent } from './main/protected/protected.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { mustBeLoggedOut } from './main/auth/guards/must-be-logged-out.guard';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProtectedComponent
   ],
   imports: [
     BrowserModule,
